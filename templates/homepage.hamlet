@@ -1,0 +1,2 @@
+<div><a href=@{AuthR LogoutR}>logout</a>
+<div .message> home

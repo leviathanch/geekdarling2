@@ -1,0 +1,7 @@
+<div>
+$maybe Key uid <- authorized
+  <div><a href=@{AuthR LogoutR}>logout</a>
+  <div>yo, #{show uid}
+  <div><a href="/home">home</a>
+$nothing
+  <div><a href=@{AuthR LoginR}>login</a>
