@@ -4,4 +4,4 @@ $nothing
   <h1>You do not have a profile yet.
 <form method=post action=@{ProfileR} enctype=#{enctype}>
   ^{formWidget}
-  <input type=submit>
+  <input type=submit value="Update Profile">

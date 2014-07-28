@@ -4,7 +4,7 @@
 User
   ident Text
   password Text Maybe
-  created UTCTime Maybe default=now() 
+  created UTCTime default=now()
   UniqueUser ident
   deriving Show Typeable
 
@@ -32,3 +32,8 @@ Preferences
 Matches
   user UserId
   coUser UserId
+
+Picture
+  user UserId
+  name Text
+  created UTCTime default=now()

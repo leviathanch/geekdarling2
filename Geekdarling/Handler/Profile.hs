@@ -11,7 +11,8 @@ import qualified Data.ByteString.Base64 as B64
 
 
 data ProfileData = ProfileData
-  { about :: Textarea
+  { about   :: Textarea
+  , picture :: Maybe FileInfo
   }
 
 getProfileR :: Handler Html
@@ -52,3 +53,4 @@ profileForm :: Maybe Profile -> AForm Handler ProfileData
 profileForm profile = ProfileData
   <$> areq textareaField "Please tell us more about you:"
       (Textarea ! join $ profileAbout . profile)
+  <*> fileAFormOpt "We are interested in photos of you AFK"

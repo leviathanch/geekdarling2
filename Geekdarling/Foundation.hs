@@ -8,6 +8,7 @@ import Geekdarling.Settings.Development (development)
 import qualified Geekdarling.Settings as Settings
 
 import Data.Text
+import Data.Time
 import Prelude
 import Yesod
 import Yesod.Static
@@ -135,15 +136,16 @@ instance YesodAuth App where
   -- Where to send a user after logout
   logoutDest _ = IndexR
 
-  getAuthId creds = runDB $ do
-    x <- getBy $ UniqueUser $ credsIdent creds
-    case x of
+  getAuthId creds = do
+    t <- liftIO getCurrentTime
+    x <- runDB . getBy $ UniqueUser $ credsIdent creds
+    runDB $ case x of
       Just (Entity uid _) -> return $ Just uid
       Nothing -> do
         fmap Just $ insert User
           { userIdent    = credsIdent creds
           , userPassword = Nothing
-          , userCreated  = Nothing
+          , userCreated  = t
           }
 
     -- You can add other plugins like BrowserID, email or OAuth here

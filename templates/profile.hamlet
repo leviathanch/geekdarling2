@@ -1,7 +1,8 @@
 $maybe p <- profile
   $if own
-    <div><a href=/profile?edit>Edit</a>
-    <div>Share your profile: <a href=/profile/#{profileMask p}>#{profileMask p}</a>
+    <div><a href=@{ProfileR}?edit>Edit</a>
+    <div>Share your profile: #
+      <a href=@{ProfileR}/#{profileMask p}>@{ProfileR}/#{profileMask p}</a>
   <div>About: #{fromMaybe "" $ profileAbout p}
 $nothing
   <h1>Profile not found :-(
