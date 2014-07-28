@@ -1,0 +1,7 @@
+$maybe _ <- profile
+  <h1>
+$nothing
+  <h1>You do not have a profile yet.
+<form method=post action=@{ProfileR} enctype=#{enctype}>
+  ^{formWidget}
+  <input type=submit>

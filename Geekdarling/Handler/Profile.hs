@@ -19,11 +19,11 @@ getProfileR = do
   Just uid <- maybeAuthId
   profile  <- fmap entityVal ! runDB . getBy $ UniqueUserProfile uid
   editGet  <- lookupGetParam "edit" 
-  let edit = isNothing profile || isJust editGet
   (formWidget, enctype) <- generateFormPost . renderDivs $ profileForm profile
+  let own = True
   defaultLayout $ do
     setTitle "Your Profile"
-    $(widgetFile "profile")
+    isJust profile && isNothing editGet ? $(widgetFile "profile") $ $(widgetFile "profile_edit")
 
 postProfileR :: Handler Html
 postProfileR = do
@@ -31,7 +31,6 @@ postProfileR = do
   profile  <- fmap entityVal ! runDB . getBy $ UniqueUserProfile uid
   rnd <- liftIO $ decodeLatin1 . B64.encode . randomBS 6
   ((result, formWidget), enctype) <- runFormPost . renderDivs $ profileForm profile
-  let edit = True
   case (result, profile) of
     (FormSuccess form, Just _ ) -> do
       runDB $ updateWhere [ProfileUser ==. uid]
@@ -47,7 +46,7 @@ postProfileR = do
     _ -> return ()
   defaultLayout $ do
     setTitle "Your Profile"
-    $(widgetFile "profile")
+    $(widgetFile "profile_edit")
 
 profileForm :: Maybe Profile -> AForm Handler ProfileData
 profileForm profile = ProfileData
