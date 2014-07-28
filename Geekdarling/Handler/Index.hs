@@ -1,8 +1,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Handler.Index where
+module Geekdarling.Handler.Index where
 
-import Import
+import Geekdarling.Import
 
 
 getIndexR :: Handler Html

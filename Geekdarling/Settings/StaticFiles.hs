@@ -1,10 +1,12 @@
-module Settings.StaticFiles where
+
+module Geekdarling.Settings.StaticFiles where
+
+import Geekdarling.Settings.Development
+import Geekdarling.Settings (staticDir)
 
 import Prelude (IO)
 import Yesod.Static
 import qualified Yesod.Static as Static
-import Settings (staticDir)
-import Settings.Development
 import Language.Haskell.TH (Q, Exp, Name)
 import Data.Default (def)
 
@@ -17,7 +19,7 @@ staticSite = if development then Static.staticDevel staticDir
 --   giving you compile-time verification that referenced files exist.
 --   Warning: any files added to your static directory during run-time can't be
 --   accessed this way. You'll have to use their FilePath or URL to access them.
-$(staticFiles Settings.staticDir)
+$(staticFiles staticDir)
 
 combineSettings :: CombineSettings
 combineSettings = def

@@ -1,6 +1,13 @@
 
-module Foundation where
+module Geekdarling.Foundation where
 
+import Geekdarling.Model
+import Geekdarling.Settings.StaticFiles
+import Geekdarling.Settings (widgetFile, Extra (..))
+import Geekdarling.Settings.Development (development)
+import qualified Geekdarling.Settings as Settings
+
+import Data.Text
 import Prelude
 import Yesod
 import Yesod.Static
@@ -9,13 +16,8 @@ import Yesod.Auth.OpenId
 import Yesod.Default.Config
 import Yesod.Default.Util (addStaticContentExternal)
 import Network.HTTP.Client.Conduit (Manager, HasHttpManager (getHttpManager))
-import qualified Settings
-import Settings.Development (development)
 import qualified Database.Persist
 import Database.Persist.Sql (SqlPersistT)
-import Settings.StaticFiles
-import Settings (widgetFile, Extra (..))
-import Model
 import Text.Jasmine (minifym)
 import Text.Hamlet (hamletFile)
 import Yesod.Core.Types (Logger)
@@ -139,8 +141,9 @@ instance YesodAuth App where
       Just (Entity uid _) -> return $ Just uid
       Nothing -> do
         fmap Just $ insert User
-          { userIdent = credsIdent creds
+          { userIdent    = credsIdent creds
           , userPassword = Nothing
+          , userCreated  = Nothing
           }
 
     -- You can add other plugins like BrowserID, email or OAuth here

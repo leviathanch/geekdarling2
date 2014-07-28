@@ -1,13 +1,14 @@
 {-# OPTIONS_GHC -fno-warn-orphans #-}
 
-module Application
+module Geekdarling.Application
   ( makeApplication
   , getApplicationDev
   , makeFoundation
   ) where
 
-import Import
-import Settings
+import Geekdarling.Import
+import Geekdarling.Settings as Settings
+
 import Yesod.Default.Config
 import Yesod.Default.Main
 import Yesod.Default.Handlers
@@ -28,8 +29,10 @@ import Yesod.Core.Types (loggerSet, Logger (Logger))
 
 -- Import all relevant handler modules here.
 -- Don't forget to add new modules to your cabal file!
-import Handler.Home
-import Handler.Index
+import Geekdarling.Handler.Home
+import Geekdarling.Handler.Index
+import Geekdarling.Handler.Profile
+import Geekdarling.Handler.ProfileOther
 
 -- This line actually creates our YesodDispatch instance. It is the second half
 -- of the call to mkYesodData which occurs in Foundation.hs. Please see the

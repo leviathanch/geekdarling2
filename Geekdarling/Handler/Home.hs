@@ -1,8 +1,8 @@
 {-# LANGUAGE TupleSections, OverloadedStrings #-}
 
-module Handler.Home where
+module Geekdarling.Handler.Home where
 
-import Import
+import Geekdarling.Import
 
 
 -- | This is a handler function for the GET request method on the HomeR

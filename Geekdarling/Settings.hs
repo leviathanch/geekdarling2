@@ -3,7 +3,9 @@
 -- In addition, you can configure a number of different aspects of Yesod
 -- by overriding methods in the Yesod typeclass. That instance is
 -- declared in the Foundation.hs file.
-module Settings where
+module Geekdarling.Settings where
+
+import Geekdarling.Settings.Development
 
 import Prelude
 import Text.Shakespeare.Text (st)
@@ -14,7 +16,6 @@ import Yesod.Default.Util
 import Data.Text (Text)
 import Data.Yaml
 import Control.Applicative
-import Settings.Development
 import Data.Default (def)
 import Text.Hamlet
 

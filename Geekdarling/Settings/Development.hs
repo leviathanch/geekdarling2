@@ -1,4 +1,5 @@
-module Settings.Development where
+
+module Geekdarling.Settings.Development where
 
 import Prelude
 

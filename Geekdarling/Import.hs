@@ -1,22 +1,24 @@
-module Import
+module Geekdarling.Import
     ( module Import
     ) where
 
 import Prelude     as Import hiding
-  ( head, init, last,
-    readFile, tail, writeFile
+  ( head, init, last
+  , readFile, tail, writeFile
+  , (.)
   )
 import Yesod       as Import hiding (Route (..))
 import Yesod.Auth  as Import
 
-import Control.Applicative  as Import (pure, (<$>), (<*>))
 import Data.Text            as Import (Text)
 
-import Foundation           as Import
-import Model                as Import
-import Settings             as Import
-import Settings.Development as Import
-import Settings.StaticFiles as Import
+import Geekdarling.Foundation           as Import
+import Geekdarling.Functor              as Import
+import Geekdarling.Model                as Import
+import Geekdarling.Settings             as Import
+import Geekdarling.Settings.Development as Import
+import Geekdarling.Settings.StaticFiles as Import
+import Geekdarling.Util                 as Import
 
 #if __GLASGOW_HASKELL__ >= 704
 import           Data.Monoid          as Import

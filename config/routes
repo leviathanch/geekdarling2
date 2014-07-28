@@ -6,3 +6,5 @@
 
 /home HomeR GET POST
 / IndexR GET
+/profile ProfileR GET POST
+/profile/#Text ProfileOtherR GET POST

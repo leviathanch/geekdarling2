@@ -1,12 +1,34 @@
-User
-    ident Text
-    password Text Maybe
-    UniqueUser ident
-    deriving Typeable
-Email
-    email Text
-    user UserId Maybe
-    verkey Text Maybe
-    UniqueEmail email
 
- -- By default this file is used in Model.hs (which is imported by Foundation.hs)
+-- By default this file is used in Model.hs (which is imported by Foundation.hs)
+
+User
+  ident Text
+  password Text Maybe
+  created UTCTime Maybe default=now() 
+  UniqueUser ident
+  deriving Show Typeable
+
+Email
+  email Text
+  user UserId Maybe
+  verkey Text Maybe
+  UniqueEmail email
+  deriving Show
+
+Profile
+  user UserId
+  mask Text
+  about Text Maybe
+  UniqueUserProfile user 
+  UniqueProfile mask 
+  deriving Show
+
+Preferences
+  user UserId
+  starTrek Double
+  UniquePreferences user
+  deriving Show
+
+Matches
+  user UserId
+  coUser UserId

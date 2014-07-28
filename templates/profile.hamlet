@@ -1,0 +1,10 @@
+$if edit
+  $if isNothing profile
+    <h1>You do not have a profile yet.
+  <form method=post action=@{ProfileR} enctype=#{enctype}>
+    ^{formWidget}
+    <input type=submit>
+$else
+  $maybe p <- profile
+    <h1>Geeks can view this site: <a href=/profile/#{profileMask p}>#{profileMask p}</a>
+  $nothing
